@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mustafa & Eda - 05.10.2026</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Montserrat:wght@300;400&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --bg-color: #050505; /* Derin Siyah */
+            --primary-gold: #c6a355; /* Mat Altın */
+            --accent-gold: #f3e5ab; /* Parlak Altın */
+            --text-light: #ffffff;
+            --text-dark: #1a1a1a;
+            --font-main: 'Montserrat', sans-serif;
+            --font-heading: 'Cormorant Garamond', serif;
+        }
+
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            overflow-x: hidden;
+            background-color: var(--bg-color);
+            color: var(--text-light);
+            font-family: var(--font-main);
+        }
+
+        /* --- İnteraktif Kanvas Arka Planı --- */
+        #particles-js {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            background-color: var(--bg-color);
+            z-index: -1; /* Arka planda kal */
+        }
+
+        /* --- Ana Ekran (Hero) --- */
+        .hero {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            position: relative;
+        }
+
+        /* Başlık Animasyonu (CSS) */
+        .names-container {
+            overflow: hidden;
+            margin-bottom: 20px;
+        }
+
+        .names {
+            font-family: var(--font-heading);
+            font-size: 8rem;
+            font-weight: 600;
+            color: var(--primary-gold);
+            margin: 0;
+            line-height: 1;
+            opacity: 0;
+            transform: translateY(100px);
+            animation: slideUpFade 1.5s ease-out forwards;
+            animation-delay: 0.5s;
+        }
+
+        .and {
+            font-family: var(--font-heading);
+            font-size: 4rem;
+            font-style: italic;
+            color: var(--accent-gold);
+            opacity: 0;
+            animation: fadeIn 1s ease-out forwards;
+            animation-delay: 1.2s;
+        }
+
+        @keyframes slideUpFade {
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes fadeIn {
+            to { opacity: 1; }
+        }
+
+        .date {
+            font-size: 1.5rem;
+            letter-spacing: 5px;
+            color: var(--text-light);
+            text-transform: uppercase;
+            margin-top: 10px;
+            opacity: 0;
+            animation: fadeIn 1s ease-out forwards;
+            animation-delay: 1.8s;
+        }
+
+        /* --- Aşağı Kaydır İkonu --- */
+        .scroll-down {
+            position: absolute;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            opacity: 0;
+            animation: fadeIn 1s ease-out forwards;
+            animation-delay: 2.5s;
+        }
+
+        .arrow {
+            width: 20px;
+            height: 20px;
+            border-bottom: 2px solid var(--accent-gold);
+            border-right: 2px solid var(--accent-gold);
+            transform: rotate(45deg);
+            margin: 0 auto;
+            animation: bounce 2s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {transform: translateY(0) rotate(45deg);}
+            40% {transform: translateY(-10px) rotate(45deg);}
+            60% {transform: translateY(-5px) rotate(45deg);}
+        }
+
+        /* --- Davetiye Kartı (Modern ve Temiz) --- */
+        .invitation {
+            padding: 100px 20px;
+            background-color: #fff; /* Beyaz kontrasts */
+            color: var(--text-dark);
+            text-align: center;
+        }
+
+        .card {
+            max-width: 800px;
+            margin: 0 auto;
+            border: 1px solid #eaeaea;
+            padding: 60px;
+            background: #fff;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.05);
+            opacity: 0;
+            transform: translateY(50px);
+            transition: all 1s ease-out;
+        }
+
+        .card.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .card-heading {
+            font-family: var(--font-heading);
+            font-size: 3.5rem;
+            margin-top: 0;
+            color: var(--text-dark);
+        }
+
+        .card-text {
+            font-size: 1.2rem;
+            line-height: 1.8;
+            max-width: 600px;
+            margin: 30px auto;
+        }
+
+        .details-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 30px;
+            margin-top: 50px;
+            text-align: left;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .detail-item strong {
+            display: block;
+            color: var(--primary-gold);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-size: 0.9rem;
+            margin-bottom: 5px;
+        }
+
+        .detail-item span {
+            font-size: 1.1rem;
+        }
+
+        .gold-btn {
+            background: var(--primary-gold);
+            color: white;
+            padding: 15px 40px;
+            text-decoration: none;
+            border-radius: 0; /* Modern köşeli */
+            font-weight: 400;
+            letter-spacing: 2px;
+            display: inline-block;
+            margin-top: 50px;
+            transition: background 0.3s ease;
+            text-transform: uppercase;
+            font-size: 0.9rem;
+        }
+
+        .gold-btn:hover {
+            background: #b39149;
+        }
+
+        /* Mobil Uyumluluk */
+        @media (max-width: 768px) {
+            .names { font-size: 4rem; }
+            .and { font-size: 2.5rem; }
+            .date { font-size: 1rem; letter-spacing: 2px; }
+            .card { padding: 30px; }
+            .card-heading { font-size: 2.5rem; }
+            .details-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+    <div id="particles-js"></div>
+
+    <section class="hero">
+        <div class="names-container">
+            <h1 class="names">Mustafa <span class="and">&</span> Eda</h1>
+        </div>
+        <p class="date">05 EYLÜL 2026</p>
+        
+        <div class="scroll-down">
+            <div class="arrow"></div>
+        </div>
+    </section>
+
+    <section class="invitation">
+        <div class="card" id="invite-card">
+            <h2 class="card-heading">Sonsuz Bir Evet</h2>
+            <p class="card-text">
+                Hayatımızın en özel gününde, sevgimizi ve mutluluğumuzu siz değerli dostlarımızla paylaşmaktan onur duyarız. Birlikte bir ömre adım atarken yanımızda olun.
+            </p>
+            
+            <hr style="width: 50px; border: 0; border-top: 2px solid var(--primary-gold); margin: 40px auto;">
+            
+            <div class="details-grid">
+                <div class="detail-item">
+                    <strong>Tarih</strong>
+                    <span>05 Eylül 2026, Cumartesi</span>
+                </div>
+                <div class="detail-item">
+                    <strong>Saat</strong>
+                    <span>20.00</span>
+                </div>
+                <div class="detail-item">
+                    <strong>Mekan</strong>
+                    <span>Queen Wedding</span>
+                </div>
+                <div class="detail-item">
+                    <strong>Adres</strong>
+                    <span>Beyazevler/Adana</span>
+                </div>
+            </div>
+            
+            <a href="https://share.google/IJsLuz4cRlvC80c4k" target="_blank" class="gold-btn">Konum ve Detaylar</a>
+        </div>
+    </section>
+
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+    <script>
+        // --- 1. Arka Plan Partikül Animasyonu (Saf Kod) ---
+        particlesJS("particles-js", {
+            "particles": {
+                "number": { "value": 80, "density": { "enable": true, "value_area": 800 } },
+                "color": { "value": "#c6a355" }, // Altın rengi partiküller
+                "shape": { "type": "circle" },
+                "opacity": { "value": 0.5, "random": true, "anim": { "enable": true, "speed": 1, "opacity_min": 0.1, "sync": false } },
+                "size": { "value": 3, "random": true, "anim": { "enable": false } },
+                "line_linked": { "enable": true, "distance": 150, "color": "#c6a355", "opacity": 0.2, "width": 1 },
+                "move": { "enable": true, "speed": 1, "direction": "none", "random": true, "straight": false, "out_mode": "out", "bounce": false }
+            },
+            "interactivity": {
+                "detect_on": "canvas",
+                "events": { "onhover": { "enable": true, "mode": "grab" }, "onclick": { "enable": true, "mode": "push" }, "resize": true },
+                "modes": { "grab": { "distance": 140, "line_linked": { "opacity": 0.5 } }, "push": { "particles_nb": 4 } }
+            },
+            "retina_detect": true
+        });
+
+        // --- 2. Kaydırma Efekti (Scroll-Reveal) ---
+        const inviteCard = document.getElementById('invite-card');
+        
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    inviteCard.classList.add('show');
+                }
+            });
+        }, { threshold: 0.2 }); // %20'si göründüğünde tetikle
+
+        observer.observe(inviteCard);
+    </script>
+</body>
+</html>
